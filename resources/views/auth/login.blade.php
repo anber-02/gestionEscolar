@@ -44,10 +44,10 @@
                     Recuérdame
                 </span>
             </div>
-            <a class="text-sm font-semibold underline border-2 border-transparent rounded dark:text-slate-300 text-slate-600 focus:border-slate-500 focus:outline-none"
+            {{-- <a class="text-sm font-semibold underline border-2 border-transparent rounded dark:text-slate-300 text-slate-600 focus:border-slate-500 focus:outline-none"
                 href="{{ route('register') }}">
-                Register
-            </a>
+                Registrarse
+            </a> --}}
 
 
             <input type="submit" value="Iniciar sesion"

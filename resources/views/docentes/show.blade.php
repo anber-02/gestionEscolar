@@ -17,15 +17,12 @@
               </div>
               <p>Apellido paterno: <span>{{ $docente->a_paterno }}</span></p>
               <p>Apellido materno: <span>{{ $docente->a_materno }}</span></p>
-              <p>Matricula: <span>{{ $docente->direccion }}</span></p>
-              <p>Edad: <span>{{ $docente->email }}</span></p>
-              <p>Direccion: <span>{{ $docente->telefono }}</span></p>
-              <p>Correo electronico: <span>{{ $docente->curp }}</span></p>
-              <p>Telefono: <span>{{ $docente->rfc }}</span></p>
+              <p>Correo: <span>{{ $docente->email }}</span></p>
+              <p>RFC: <span>{{ $docente->rfc }}</span></p>
           </div>
       </div>
       <a class="bg-cyan-600 text-cyan-50 font-semibold w-36 hover:bg-cyan-300 hover:text-black py-1 px-3 rounded-lg text-center"
-          href="{{ route('docentes.edit', $docente->id_docente) }}">Editar
+          href="{{ route('docentes.edit', $docente->id) }}">Editar
       </a>
   </main>
 </x-layouts.app>

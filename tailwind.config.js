@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'pattern': "url('/img/patron.png)"
+        'pattern': "url('http://localhost:8000/public/img/patron.png')"
       },
       fontSize: {
         '3xl': '2.2rem',
@@ -16,9 +16,14 @@ module.exports = {
         '5xl': '3.052rem',
       }, 
       boxShadow: {
-        'x': '.1rem .1rem .4rem .05rem rgba(0,0,0,.5)'
+        'x': '.1rem .1rem .4rem .05rem rgba(0,0,0,.5)',
+        '3xl': '.1rem .1rem .4rem .05rem rgba(0,0,0,.5)'
+      },
+      width: {
+        '1-43': '43%'
       }
     },
   },
   plugins: [],
 }
+// /img/perfil.png

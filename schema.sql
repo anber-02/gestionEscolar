@@ -1,5 +1,10 @@
-SELECT alumnos.nombre, a_paterno, a_materno, materias.nombre, calificaciones.primer_parcial, calificaciones.segundo_parcial, calificaciones.tercer_parcial  from grupos inner join alumnos on grupos.id_alumno = alumnos.id_alumno inner join materias on grupos.id_grupo = materias.id_grupo inner join calificaciones on 
-calificaciones.id_alumno = alumnos.id_alumno;
+SELECT alumnos.id_alumno,alumnos.nombre, a_paterno, a_materno, grupos.nombre as grupo,
+calificaciones.primer_parcial, calificaciones.segundo_parcial, calificaciones.tercer_parcial, calificaciones.promedio,
+materias.clave, materias.nombre
+from grupos inner join alumnos on grupos.id_alumno = alumnos.id_alumno
+inner join calificaciones on alumnos.id_alumno = calificaciones.id_alumno
+inner join materias on alumnos.id_alumno = materias.id_alumno;
+;
 
 
 

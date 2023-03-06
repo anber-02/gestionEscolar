@@ -12,14 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('calificaciones', function (Blueprint $table) {
-            $table->id("id_calif");
-            $table->float("primer_parcial");
-            $table->float("segundo_parcial");
-            $table->float("tercer_parcial");
-            $table->float("promedio");
-            $table->foreignId("id_materia");
-            $table->foreignId("id_alumno");
-            $table->foreignId("id_profesor");
+            $table->bigIncrements("id_calif");
+            $table->float("primer_parcial")->nullable();
+            $table->float("segundo_parcial")->nullable();
+            $table->float("tercer_parcial")->nullable();
+            $table->float("promedio")->nullable();
+
+            $table->unsignedBigInteger('id_materia');
+            $table->foreign('id_materia')->references('id_materia')->on('materias');
+            
+            $table->unsignedBigInteger("id_alumno");
+            $table->foreign('id_alumno')->references('id_alumno')->on('alumnos');
+
+            $table->unsignedBigInteger("id_docente");
+            $table->foreign('id_docente')->references('id')->on('users');
+
+
             $table->timestamps();
         });
     }

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SaveDocenteRequest;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Grupo;
 
-
-class DocenteController extends Controller
+class GrupoController extends Controller
 {
     //
     public function index(){
@@ -33,6 +31,7 @@ class DocenteController extends Controller
             'nombre' => $request->nombre,
             'a_paterno' => $request->a_paterno,
             'a_materno' => $request->a_materno,
+            'materia' => $request->materia,
             'num_tel' => $request->num_tel,
             'email' => $request->email,
             'rfc' => $request->rfc,
@@ -71,15 +70,7 @@ class DocenteController extends Controller
     public function update(SaveDocenteRequest $request, User $docente){
         // indicar que el parametro recivido es de tipo Docente
         // nos ayuda a omitir la busqueda del Docente con el metodo find(id)
-        $docente->update([
-            'nombre' => $request->nombre,
-            'a_paterno' => $request->a_paterno,
-            'a_materno' => $request->a_materno,
-            'num_tel' => $request->num_tel,
-            'email' => $request->email,
-            'rfc' => $request->rfc,
-            'password' => bcrypt($request->password)
-        ]);
+        $docente->update($request->validated());
         // to_route() -> es como redirect()->route()
         return to_route('docentes.show', $docente)
         ->with('status', 'Docente actualizado correctamente');

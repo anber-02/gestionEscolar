@@ -17,7 +17,10 @@ slot con nombre
 <!-- cargando css y js con vite, renderiza en tiempo real -->
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen bg-pattern">
+<body 
+class="min-h-screen bg-gray-200 bg-cover"
+style="background-image: url('/img/patron.png')"
+>
   <!-- Navbar -->
   <!-- @ include('partials.nav') -->
   
@@ -35,7 +38,7 @@ slot con nombre
       {{session('status')}}
     </div>
   @endif
-  {{ $slot }}
+    {{ $slot }}
   <!-- slot es una variable definida que indica
 donde se va colocar el html dinamico -->
 </body>

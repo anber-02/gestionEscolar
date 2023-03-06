@@ -24,14 +24,23 @@ class SaveDocenteRequest extends FormRequest
 
         return [
             //
+            'nombre' => 'required',
             'a_paterno' => 'required',
             'a_materno' => 'required',
-            'nombre' => 'required',
-            'direccion' => 'required',
-            'telefono' => 'required',
+            'num_tel' => 'required',
             'email' => 'required',
             'rfc' => 'required',
-            'curp' => 'required',
+            'password' => 'required',
+            'grupo_id' => []
         ];
+        // 'nombre',
+        // 'a_paterno',
+        // 'a_materno',
+        // 'rfc',
+        // 'materia',
+        // 'num_tel',
+        // 'email',
+        // 'password',
+        // 'rol',
     }
 }

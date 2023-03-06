@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Materia;
+use App\Models\Grupo;
+// use app\Models\Calificacione;
 
 /**
  * @property $id_alumno;
@@ -35,4 +38,11 @@ class Alumno extends Model
 		 * la proteccion con la asignacion masiva
 		 */
     protected $guarded = [];
+		public function materias(){
+			return $this->belongsToMany(Materia::class);
+		}
+		public function grupos(){
+			return $this->belongsToMany(Grupo::class ,'grupo_alumno', 'id_alumno', 'id_grupo');
+		}
+		
 }

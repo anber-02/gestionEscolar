@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveAlumnoRequest;
 use App\Models\Alumno;
+use App\Models\Grupo;
 use Illuminate\Http\Request;
 
 class AlumnoController extends Controller
@@ -15,10 +16,17 @@ class AlumnoController extends Controller
         // $this->middleware('auth', ['except' => ['create', 'edit']]);//aplica el middleware a todas las rutas excepto a las indicatas
     }
     //
-    public function index(){
-        $alumnos = Alumno::get();
-
-        return view('alumnos.index', ['alumnos' => $alumnos]);
+    public function index(Request $request){
+        $grupo_filter = $request->get('grupo-filter');
+        $grupos = Grupo::get();
+        $alumnos = [];
+        if($grupo_filter != 'todos' && $grupo_filter != null){
+            $grupo = Grupo::where('nombre',$grupo_filter)->first();
+            $alumnos = $grupo->alumnos;
+        }else{
+            $alumnos = Alumno::where('estado', true)->orderBy('a_paterno', 'asc')->get();
+        }
+        return view('alumnos.index', compact('alumnos', 'grupo_filter', 'grupos'));
     }
     
     // funciones basicas
@@ -28,13 +36,35 @@ class AlumnoController extends Controller
     }
 
     public function create(){
-        return view('alumnos.create', ['alumno' => new Alumno]);
+        $grupoAlumno = '';
+        return view('alumnos.create', ['alumno' => new Alumno, 'grupos' => Grupo::get(), 'grupoAlumno' => $grupoAlumno]);
     }
 
-    public function store(SaveAlumnoRequest $request){
+    public function store(Request $request){
         // validamos si los datos enviados tienen el mismo nombre
         // en las reglas y el input
-        Alumno::create($request->validated());
+        $request->validate([
+            'nombre' => 'required',
+                'a_paterno' => 'required',
+                'a_materno' => 'required',
+                'matricula' => 'required',
+                'direccion' => 'required',
+                'email' => 'required',
+                'telefono' => 'required',
+                'grupo_id' => 'required'
+        ]);
+
+
+        $grupo = Grupo::find($request["grupo_id"]);
+        $grupo->alumnos()->attach( Alumno::create($request->validate([
+            'nombre' => 'required',
+            'a_paterno' => 'required',
+            'a_materno' => 'required',
+            'matricula' => 'required',
+            'direccion' => 'required',
+            'email' => 'required',
+            'telefono' => 'required',
+        ])));
 
         // $alumno = new Alumno;
         // $alumno->nombre = $request->input('nombre');
@@ -48,7 +78,9 @@ class AlumnoController extends Controller
     }
 
     public function edit(Alumno $alumno){
-        return view('alumnos.edit', ['alumno' => $alumno]);
+        $grupos = Grupo::get();
+        $grupoAlumno = $alumno->grupos[0]->nombre;
+        return view('alumnos.edit', ['alumno' => $alumno, 'grupos' => $grupos, 'grupoAlumno' => $grupoAlumno]);
     }
 
     public function update(SaveAlumnoRequest $request, Alumno $alumno){
@@ -61,7 +93,9 @@ class AlumnoController extends Controller
     }
 
     public function destroy(Alumno $alumno){
-        $alumno->delete();
+        $alumno->update([
+            "estado" => false
+        ]);
         return to_route('alumnos.index')->with('status', 'Alumno eliminado correctamente');
     }
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\CalificacioneController;
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\MateriaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,6 +66,10 @@ Route::resource('docente', DocenteController::class, [
 
 Route::resource('calificaciones', CalificacioneController::class, [
     'names' => 'calificaciones'
+])->middleware('auth');
+
+Route::resource('materias', MateriaController::class, [
+    'names' => 'materias'
 ])->middleware('auth');
 
 
