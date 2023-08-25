@@ -14,7 +14,7 @@ class Materia extends Model
     protected $primaryKey = 'id_materia';
 
     public function calificaciones(){
-        return $this->hasOne(Calificacione::class, 'id_materia');
+        return $this->hasOne(Calificacione::class, 'materia_id');
     }
 
     public function alumnos(){
@@ -23,9 +23,9 @@ class Materia extends Model
     // Relacioines muchos a muchos polimorficas
     public function docentes(){
         // return $this->morphedByMany(User::class, 'grupo_materia_docente', 'grupo_materia_docentes');
-        return $this->morphedByMany(User::class, 'grupo_materia_docente', 'grupo_materia_docentes', 'materia_id_materia');
+        return $this->belongsToMany(User::class, 'docentes_materias', 'docente_id', 'materia_id');
     }
     public function grupos(){
-        return $this->morphedByMany(Grupo::class, 'grupo_materia_docente', 'grupo_materia_docentes', 'materia_id_materia');
+        return $this->belongsToMany(Grupo::class, 'grupos_materias', 'grupo_id', 'materia_id');
     }
 }

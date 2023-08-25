@@ -12,6 +12,6 @@ class Calificacione extends Model
     protected $primaryKey = 'id_calif';
 
     public function materias(){
-        return $this->belongsTo(Materia::class, 'id_materia');
+        return $this->belongsTo(Materia::class, 'materia_id');
     }
 }

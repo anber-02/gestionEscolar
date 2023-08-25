@@ -39,45 +39,11 @@
                         <td class=" border-r border-black text-left py-3 px-4">
                             {{$materia->duracion}}
                         </td>
-
-                        <td class=" border-r border-black text-left py-3 px-4">
-                            <ul class="list-disc px-2">
-                                @foreach ( $materia->docentes as $docente )
-                                <li>{{$docente->a_paterno}} {{$docente->a_materno}} {{$docente->nombre}}</li>
-                                @endforeach
-                            </ul>
-                            @if($materia->docentes->toArray() == []) 
-                            <p class="text-red-700">Sin docente asignado</p>
-                            @endif
-                        </td>
-                        <td class=" border-r border-black text-left py-3 px-4">
-                            <ul class="px-2">
-                                @foreach ( $materia->grupos as $grupo )
-                                <li>{{$grupo->nombre}}</li>
-                                @endforeach
-                            </ul>
-                            @if($materia->grupos->toArray() == []) 
-                            <p class="text-red-700">Sin grupo asignado</p>
-                            @endif
-                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
-  {{-- Tabla Materia --}}
-
-
-
-  {{-- gracias a la directiva 
-  @auth 
-    //todo esto solo se mostrara a usuarios autenticados
-  @endauth 
-  
-  @guest
-   //todo esto solo se mostrara a usuarios no autenticados
-  @endguest
-  --}}
 
 </x-layouts.app>

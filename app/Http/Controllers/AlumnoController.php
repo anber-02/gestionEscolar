@@ -17,16 +17,20 @@ class AlumnoController extends Controller
     }
     //
     public function index(Request $request){
+        $alumnos = Alumno::getAllAlumnos();
         $grupo_filter = $request->get('grupo-filter');
         $grupos = Grupo::get();
-        $alumnos = [];
-        if($grupo_filter != 'todos' && $grupo_filter != null){
-            $grupo = Grupo::where('nombre',$grupo_filter)->first();
-            $alumnos = $grupo->alumnos;
-        }else{
-            $alumnos = Alumno::where('estado', true)->orderBy('a_paterno', 'asc')->get();
-        }
+        // $alumnos = [];
+
+        // if($grupo_filter != 'todos' && $grupo_filter != null){
+        //     $grupo = Grupo::where('nombre',$grupo_filter)->first();
+        //     $alumnos = $grupo->alumnos;
+        // }else{
+        //     $alumnos = Alumno::where('estado', true)->orderBy('a_paterno', 'asc')->get();
+        // }
+
         return view('alumnos.index', compact('alumnos', 'grupo_filter', 'grupos'));
+        
     }
     
     // funciones basicas

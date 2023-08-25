@@ -11,10 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('grupo_materia_docentes', function (Blueprint $table) {
-            $table->id();
-            
-            $table->unsignedBigInteger('grupo_materia_docente_id');
+        Schema::create('grupo_materia', function (Blueprint $table) {
             // $table->foreign('id_grupo')
             //       ->references('id_grupo')
             //       ->on('grupos');

@@ -18,13 +18,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
         // GRUPOS
         $grupo1 = Grupo::create([
             'nombre' => 't-502',
@@ -132,69 +125,6 @@ class DatabaseSeeder extends Seeder
             'nombre' => 'creacion de juegos',
             'duracion' => '50 horas',
         ]);
-
-        $calificaciones1 = Calificacione::create([
-            'primer_parcial' => 8.0,
-            'segundo_parcial' => 8.0,
-            'tercer_parcial' => 8.0,
-            'promedio' => 8.0,
-            'id_materia' => 1,
-            'id_docente' => 1,
-            'id_alumno' => 1,
-        ]);
-        $calificaciones2 = Calificacione::create([
-            'primer_parcial' => 8.0,
-            'segundo_parcial' => 8.0,
-            'tercer_parcial' => 8.0,
-            'promedio' => 8.0,
-            'id_materia' => 1,
-            'id_docente' => 1,
-            'id_alumno' => 2,
-        ]);
-
-        $calificaciones3 = Calificacione::create([
-            'primer_parcial' => 8.0,
-            'segundo_parcial' => 8.0,
-            'tercer_parcial' => 8.0,
-            'promedio' => 8.0,
-            'id_materia' => 1,
-            'id_docente' => 1,
-            'id_alumno' => 3,
-        ]);
-
-        $materia1->calificaciones()->save($calificaciones1);
-
-
-        $alumno1->materias()->attach($materia1);
-        $alumno1->materias()->attach($materia3);
-        $alumno2->materias()->attach($materia1);
-        $alumno2->materias()->attach($materia3);
-        $alumno3->materias()->attach($materia2);
-        $alumno4->materias()->attach($materia2);
-        $alumno4->materias()->attach($materia1);
-        $alumno4->materias()->attach($materia4);
         
-        // ASIGNANDO ALUMNOS A LOS GRUPOS
-        $grupo1->alumnos()->attach($alumno1);
-        $grupo1->alumnos()->attach($alumno2);
-        $grupo2->alumnos()->attach($alumno3);
-        $grupo3->alumnos()->attach($alumno4);
-        // Asignando un docentes a las materias
-        $materia1->docentes()->attach($user2);
-        $materia2->docentes()->attach($user2);
-        $materia2->docentes()->attach($user3);
-        $materia3->docentes()->attach($user4);
-
-        // Asignando materias para cada grupo
-
-        $grupo1->materias()->attach($materia1);
-        $grupo1->materias()->attach($materia2);
-        $grupo1->materias()->attach($materia3);
-        $grupo1->materias()->attach($materia4);
-
-        $grupo2->materias()->attach($materia1);
-        $grupo2->materias()->attach($materia2);
-
-        $grupo3->materias()->attach($materia2);
     }
 }

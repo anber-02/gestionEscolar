@@ -50,14 +50,11 @@ class User extends Authenticatable
     ];
 // RELACIONES MUCHOS A MUCHOS POLIMORFICAS
     public function materias(){
-        return $this->morphToMany(Materia::class, 'grupo_materia_docente')->withPivot('id_materia');
+        return $this->belongsToMany(Materia::class, 'docentes_materias', 'docente_id', 'materia_id');
     }
     public function grupos(){
-        return $this->morphToMany(Grupo::class, 'grupo_materia_docente');
+        return $this->belongsToMany(Grupo::class, 'grupos_docentes', 'docente_id', 'materia_id');
     }
-    // public function grupos(){
-    //     return $this->belongsToMany(Grupo::class, 'grupo_materia_docente', 'id_docente', 'id_grupo')->withPivot('id_materia');
-    // }
 
     
 }
