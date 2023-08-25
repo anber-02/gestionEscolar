@@ -18,7 +18,7 @@ slot con nombre
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body 
-class="min-h-screen bg-gray-200 bg-cover"
+class="min-h-screen bg-gray-200 bg-cover w-auto"
 style="background-image: url('/img/patron.png')"
 >
   <!-- Navbar -->
@@ -30,7 +30,7 @@ style="background-image: url('/img/patron.png')"
 
   <!-- Navegaciones por componentes -->
   <x-layouts.nav />
-
+  <x-messages.status-messages />
   <!-- Se muestra el mensaje en todo el layout debajo de la navegacion -->
   @if(session('status'))
   <!-- verifica si existe un mensaje de sesion con la clave status -->
@@ -38,7 +38,9 @@ style="background-image: url('/img/patron.png')"
       {{session('status')}}
     </div>
   @endif
+  <main class="w-10/12 m-auto">
     {{ $slot }}
+  </main>
   <!-- slot es una variable definida que indica
 donde se va colocar el html dinamico -->
 </body>

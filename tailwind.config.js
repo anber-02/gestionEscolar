@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'white' : '#FCFCFC'
+      },
       backgroundImage: {
         'pattern': "url('http://localhost:8000/public/img/patron.png')"
       },
@@ -16,8 +19,7 @@ module.exports = {
         '5xl': '3.052rem',
       }, 
       boxShadow: {
-        'x': '.1rem .1rem .4rem .05rem rgba(0,0,0,.5)',
-        '3xl': '.1rem .1rem .4rem .05rem rgba(0,0,0,.5)'
+        'lg': '-1px -1px 4px -3px rgba(0,0,0,.5), 1px 0px 4px -3px rgba(0,0,0,.5) ',
       },
       width: {
         '1-43': '43%'

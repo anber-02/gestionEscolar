@@ -1,65 +1,74 @@
-{{-- devuelve un booleano si estamos en la ruta indicada 
-    o alumnos.* todo lo que siga despues de alumnos.--}}
-{{-- {{request()->routeIs('alumnos.index') ? "text-white  md:text-blue-700" : "text-gray-500"}} --}}
-<nav class="bg-gray-600 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
-    <div class="container flex flex-wrap items-center justify-around mx-auto w-10/12">
-        <a href="{{ route('alumnos.index') }}" class="flex items-center">
-            <img src="/img/UTblanco.png" class="h-6 mr-3 sm:h-9" alt="UT logo" />
-            <span class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white">Gestor
-                Universitario</span>
-        </a>
-        <div class=" hidden w-full md:block md:w-auto" id="navbar-default">
+<nav class="bg-gray-600 px-2 sm:px-4 py-2.5 dark:bg-gray-900 relative">
+    <div class="container flex flex-wrap items-center justify-between mx-auto w-10/12">
+        <div class="flex gap-2 items-center">
+            <button id="btn-menu" class="text-white cursor-pointer hover:bg-teal-700 rounded-md" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"><path fill="currentColor" d="M160 448a32 32 0 0 1-32-32V160.064a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V416a32 32 0 0 1-32 32H160zm448 0a32 32 0 0 1-32-32V160.064a32 32 0 0 1 32-32h255.936a32 32 0 0 1 32 32V416a32 32 0 0 1-32 32H608zM160 896a32 32 0 0 1-32-32V608a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32v256a32 32 0 0 1-32 32H160zm448 0a32 32 0 0 1-32-32V608a32 32 0 0 1 32-32h255.936a32 32 0 0 1 32 32v256a32 32 0 0 1-32 32H608z"/></svg>
+            </button>
+            <a href="{{ route('alumnos.index') }}" class="flex items-center">
+                <img src="/img/UTblanco.png" class="hidden sm:block h-6 mr-3 sm:h-9" alt="UT logo" />
+                <span class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white">Gestor
+                    Universitario</span>
+            </a>
+        </div>
+        <div class="hidden w-full  absolute z-50 top-9 left-0" id="menu">
             <ul
-                class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-gray-900 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                class="flex flex-col p-4 mt-4  bg-gray-900">
                 @if(auth()->user()->rol == 'admin')
                 <li>
                     <a href="{{ route('alumnos.index') }}"
-                        class="text-lg block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0 dark:text-white {{request()->routeIs('alumnos.*') ? "text-white  md:text-blue-700" : "text-gray-500"}}"
+                        class="text-lg block py-2 pl-3 pr-4  rounded hover:bg-gray-800 {{request()->routeIs('alumnos.*') ? "text-white bg-blue-700" : "text-gray-500"}}"
                         aria-current="page">Alumnos</a>
                 </li>
                 <li>
                     <a href="{{route('docentes.index')}}"
-                        class="text-lg block py-2 pl-3 pr-4 text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{request()->routeIs('docentes.*') ? "text-white  md:text-blue-700" : "text-gray-500"}}">Docentes</a>
+                        class="text-lg block py-2 pl-3 pr-4  rounded hover:bg-gray-800  md:border-0 {{request()->routeIs('docentes.*') ? "text-white bg-blue-700" : "text-gray-500"}}">Docentes</a>
                 </li>
                 <li>
                     <a href="{{route('materias.index')}}"
-                        class="text-lg block py-2 pl-3 pr-4 text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{request()->routeIs('materias.*') ? "text-white  md:text-blue-700" : "text-gray-500"}}">Materias</a>
+                        class="text-lg block py-2 pl-3 pr-4  rounded hover:bg-gray-800  md:border-0 {{request()->routeIs('materias.*') ? "text-white bg-blue-700" : "text-gray-500"}}">Materias</a>
                 </li>
                 <li>
                     <a href="{{route('docentes.index')}}"
-                        class="text-lg block py-2 pl-3 pr-4 text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{request()->routeIs('grupos.*') ? "text-white  md:text-blue-700" : "text-gray-500"}}">Grupos</a>
+                        class="text-lg block py-2 pl-3 pr-4  rounded hover:bg-gray-800  md:border-0 {{request()->routeIs('grupos.*') ? "text-white bg-blue-700" : "text-gray-500"}}">Grupos</a>
                 </li>
                 @endif
                 <li>
                     <a href="{{route('calificaciones.index')}}"
-                        class="text-lg block py-2 pl-3 pr-4 text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{request()->routeIs('calificaciones.*') ? "text-white  md:text-blue-700" : "text-gray-500"}}">Calificaciones</a>
+                        class="text-lg block py-2 pl-3 pr-4 rounded hover:bg-gray-800  md:border-0 {{request()->routeIs('calificaciones.*') ? "text-white bg-blue-700" : "text-gray-500"}}">Calificaciones</a>
+                </li>
+                <hr class="sm:hidden"/>
+                <li class="sm:hidden">
+                    <form action="{{route('logout')}}" method="POST">
+                        @csrf
+                        <button
+                        type="submit"
+                        class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none focus:bg-indigo-200 text-xs bg-indigo-100 hover:bg-indigo-200 rounded-md mt-6 font-medium py-2 w-full leading-3 text-indigo-700">Salir</button>
+                    </form>
                 </li>
             </ul>
         </div>
         {{-- Avatar --}}
-        <div>
-            <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
-            <div class="z-50 w-auto px-4 py-1 shadow rounded text-sm font-medium leading-none text-gray-700 flex items-center justify-between cursor-pointer"
+        <div class="relative hidden sm:block">
+            <div class="z-50 px-4 py-1 shadow rounded text-sm font-medium leading-none text-gray-700 flex items-center justify-between cursor-pointer"
                 onclick="dropdownHandler()">
-                {{-- <img class="w-10 h-10 rounded-full object-cover mr-2" src="/img/perfil.png" alt="Rounded avatar"> --}}
                 <span class="text-white capitalize">{{Auth::user()->nombre}}</span>
                 <div class="ml-1">
                     <div class="hidden" id="close">
                         <svg width="10" height="6" viewBox="0 0 10 6" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path d="M5.00016 0.666664L9.66683 5.33333L0.333496 5.33333L5.00016 0.666664Z"
-                                fill="#1F2937" />
+                                fill="#fff" />
                         </svg>
                     </div>
                     <div id="open">
                         <svg width="10" height="6" viewBox="0 0 10 6" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.00016 5.33333L0.333496 0.666664H9.66683L5.00016 5.33333Z" fill="#1F2937" />
+                            <path d="M5.00016 5.33333L0.333496 0.666664H9.66683L5.00016 5.33333Z" fill="#fff" />
                         </svg>
                     </div>
                 </div>
             </div>
-            <div class="w-64 mt-2 p-4 bg-gray-800 text-white shadow rounded fixed hidden z-50" id="dropdown">
+            <div class="w-64 right-1 mt-2 p-4 bg-gray-800 text-white shadow rounded-md fixed hidden z-50" id="dropdown">
                 @if(auth()->user()->rol == 'admin')
                 <p>Admin</p>
                 @else
@@ -78,6 +87,22 @@
 </nav>
 
 <script>
+    const $ = (e) => document.querySelector(`${e}`)
+    const $$ = (e) => document.querySelectorAll(`${e}`)
+    
+    const btnMenu = $('#btn-menu')
+    btnMenu.addEventListener('click', (e) => {
+        const menu = $('#menu')
+        menu.classList.toggle('hidden')
+    })
+
+    document.addEventListener('click', function(event) {
+    let isClickInside = menu.contains(event.target) || btnMenu.contains(event.target);
+    if (!isClickInside) {
+        menu.classList.add('hidden')
+    }
+});
+
     let dropdown = document.getElementById("dropdown");
     let open1 = document.getElementById("open");
     let close1 = document.getElementById("close");
