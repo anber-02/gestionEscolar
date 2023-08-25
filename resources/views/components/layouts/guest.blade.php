@@ -10,7 +10,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-pattern min-h-screen relative">
+<body class="bg-pattern min-h-screen relative">    
+    
+    <x-messages.status-messages />
     <!-- Se muestra el mensaje en todo el layout debajo de la navegacion -->
     @if (session('status'))
         <!-- verifica si existe un mensaje de sesion con la clave status -->

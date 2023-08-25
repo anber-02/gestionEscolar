@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Validation\ValidationException;
 
 class AuthenticatedSessionController extends Controller
 {
     //
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $credentials = $request->validate([
-            'email' => ['required', 'string','email'],
+            'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string']
         ]);
         /**
@@ -23,15 +25,15 @@ class AuthenticatedSessionController extends Controller
          * queremos recordar la sesion o no
          * para eso utlizamos el checkbox de recuerdame
          */
-        if(!Auth::attempt($credentials, $request->boolean('remember'))){
+        if (!Auth::attempt($credentials, $request->boolean('remember'))) {
             throw ValidationException::withMessages([
                 'email' => __('auth.failed')
             ]);
         }
 
-        if(auth()->user()->role == 'admin'){
+        if (auth()->user()->role == 'admin') {
             // retornar a vista administrador
-            return ;
+            return;
         }
 
         $request->session()->regenerate();
@@ -40,12 +42,17 @@ class AuthenticatedSessionController extends Controller
             ->with('status', 'Inicio de sesion correcto');
     }
 
-    public function destroy(Request $request){
+    public function destroy(Request $request)
+    {
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return to_route('login')
-                ->with('status', 'Cerrando sesion');
+        // Eliminar todas las cookies
+        foreach ($_COOKIE as $key => $value) {
+            Cookie::forget($key);
+        }
+        return redirect()->route('login')
+            ->with('success', 'Sesión cerrada exitosamente');
     }
 }

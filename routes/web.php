@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AlumnoController;
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\CalificacioneController;
 use App\Http\Controllers\DocenteController;
@@ -29,9 +28,6 @@ Route::get('/home', function () {
 Route::view('/login', 'auth.login') -> name('login') ->middleware('guest');
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
-Route::view('/register', 'auth.register')->name('register') ->middleware('guest');
-Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
 
 // index -> listado de recursos
 // show -> detalle de algo
