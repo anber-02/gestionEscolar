@@ -19,7 +19,7 @@ module.exports = {
         '5xl': '3.052rem',
       }, 
       boxShadow: {
-        'lg': '-1px -1px 4px -3px rgba(0,0,0,.5), 1px 0px 4px -3px rgba(0,0,0,.5) ',
+        'lg': '-1px -1px 4px -3px rgba(0,0,0,.8), 1px 0px 4px -3px rgba(0,0,0,.8) ',
       },
       width: {
         '1-43': '43%'

@@ -37,7 +37,6 @@ class SaveAlumnoRequest extends FormRequest
                 'direccion' => 'required',
                 'email' => 'required',
                 'telefono' => 'required',
-                'grupo_id' => [],
         ];
     }
 }

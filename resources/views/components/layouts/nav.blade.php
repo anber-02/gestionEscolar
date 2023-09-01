@@ -1,40 +1,34 @@
-<nav class="bg-gray-600 px-2 sm:px-4 py-2.5 dark:bg-gray-900 relative">
-    <div class="container flex flex-wrap items-center justify-between mx-auto w-10/12">
+<nav class="bg-gray-600 px-2 sm:px-4 py-2.5 dark:bg-gray-900 relative ">
+    <div class="flex flex-wrap items-center justify-between mx-auto max-w-7xl ">
         <div class="flex gap-2 items-center">
-            <button id="btn-menu" class="text-white cursor-pointer hover:bg-teal-700 rounded-md" >
+            <button id="btn-menu" class="text-white cursor-pointer hover:bg-teal-700 rounded-md lg:hidden" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"><path fill="currentColor" d="M160 448a32 32 0 0 1-32-32V160.064a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V416a32 32 0 0 1-32 32H160zm448 0a32 32 0 0 1-32-32V160.064a32 32 0 0 1 32-32h255.936a32 32 0 0 1 32 32V416a32 32 0 0 1-32 32H608zM160 896a32 32 0 0 1-32-32V608a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32v256a32 32 0 0 1-32 32H160zm448 0a32 32 0 0 1-32-32V608a32 32 0 0 1 32-32h255.936a32 32 0 0 1 32 32v256a32 32 0 0 1-32 32H608z"/></svg>
             </button>
             <a href="{{ route('alumnos.index') }}" class="flex items-center">
-                <img src="/img/UTblanco.png" class="hidden sm:block h-6 mr-3 sm:h-9" alt="UT logo" />
-                <span class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white">Gestor
+                <span class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white lg:text-2xl">Gestor
                     Universitario</span>
             </a>
         </div>
-        <div class="hidden w-full  absolute z-50 top-9 left-0" id="menu">
+        <div class="hidden w-full  absolute z-50 top-12 left-0 bg-gray-900 lg:relative lg:block lg:w-auto lg:top-0" id="menu">
             <ul
-                class="flex flex-col p-4 mt-4  bg-gray-900">
+                class="flex flex-col p-4 mt-4  bg-gray-900 max-w-7xl w-full m-auto lg:flex-row lg:p-0 lg:m-0">
                 @if(auth()->user()->rol == 'admin')
                 <li>
-                    <a href="{{ route('alumnos.index') }}"
-                        class="text-lg block py-2 pl-3 pr-4  rounded hover:bg-gray-800 {{request()->routeIs('alumnos.*') ? "text-white bg-blue-700" : "text-gray-500"}}"
-                        aria-current="page">Alumnos</a>
+                    <x-nav-link route="alumnos.index" text="alumnos" />
                 </li>
                 <li>
-                    <a href="{{route('docentes.index')}}"
-                        class="text-lg block py-2 pl-3 pr-4  rounded hover:bg-gray-800  md:border-0 {{request()->routeIs('docentes.*') ? "text-white bg-blue-700" : "text-gray-500"}}">Docentes</a>
+                    <x-nav-link route="docentes.index" text="docentes" />
+                    
                 </li>
                 <li>
-                    <a href="{{route('materias.index')}}"
-                        class="text-lg block py-2 pl-3 pr-4  rounded hover:bg-gray-800  md:border-0 {{request()->routeIs('materias.*') ? "text-white bg-blue-700" : "text-gray-500"}}">Materias</a>
+                    <x-nav-link route="materias.index" text="materias" />
                 </li>
                 <li>
-                    <a href="{{route('docentes.index')}}"
-                        class="text-lg block py-2 pl-3 pr-4  rounded hover:bg-gray-800  md:border-0 {{request()->routeIs('grupos.*') ? "text-white bg-blue-700" : "text-gray-500"}}">Grupos</a>
+                    <x-nav-link route="carreras.index" text="carreras" />
                 </li>
                 @endif
                 <li>
-                    <a href="{{route('calificaciones.index')}}"
-                        class="text-lg block py-2 pl-3 pr-4 rounded hover:bg-gray-800  md:border-0 {{request()->routeIs('calificaciones.*') ? "text-white bg-blue-700" : "text-gray-500"}}">Calificaciones</a>
+                    <x-nav-link route="calificaciones.index" text="calificaciones" />
                 </li>
                 <hr class="sm:hidden"/>
                 <li class="sm:hidden">

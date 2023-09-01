@@ -47,19 +47,42 @@ class Alumno extends Model
 		return $this->belongsToMany(Grupo::class, 'grupos_alumnos', 'alumno_id', 'grupo_id');
 	}
 
-	public static function getAllAlumnos()
+	public static function getAllAlumnos($buscar = '', $grupo = '')
 	{
-		$alumnos = Alumno::with('grupos')->where('estado', 1)->get();
+		$alumnos = Alumno::with('grupos')
+			->when($grupo, function ($query, $grupo) {
+				if ($grupo == "todos") return;
+				return $query->whereHas('grupos', function ($q) use ($grupo) {
+					$q->where('id_grupo', '=', $grupo);
+				});
+			})
+			->Where(function ($q) use ($buscar) {
+				$q->where('matricula', 'like', '%' . $buscar . '%');
+			})
+			->where('estado', 1)
+			->get();
 
 		$alumnosConGrupo = $alumnos->map(function ($alumno) {
-			$grupo = $alumno->grupos;
-			$alumno->grupo = count($grupo) > 0  ? $grupo->nombre : 'Sin grupo';
+			$grupo = $alumno->grupos->last() ?? null;
+			$alumno->grupo = $grupo  ? $grupo->nombre : 'Sin grupo';
 			return $alumno;
 		});
 
 		return $alumnosConGrupo;
 	}
-	// $products = Product::where('estado', 1)
-	// ->addSelect(['categoria' => Category::select('nombre')->whereColumn('category_id', 'id')])
-	// ->get();
+	public static function getAlumnoById($alumno)
+	{
+		$alumnos = Alumno::with('grupos')
+			->where('id_alumno', $alumno)
+			->where('estado', 1)->get();
+
+		$alumnosConGrupo = $alumnos->map(function ($alumno) {
+			$grupo = $alumno->grupos[0] ?? null;
+			$alumno->grupo = $grupo  ? $grupo->nombre : 'Sin grupo';
+			return $alumno;
+		});
+
+
+		return $alumnosConGrupo[0];
+	}
 }

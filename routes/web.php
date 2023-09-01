@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\CalificacioneController;
+use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\MateriaController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,33 @@ Route::view('/login', 'auth.login') -> name('login') ->middleware('guest');
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
+// SIMPLIIFCANDO LAS RUTAS 
+// ===Rutas ALumno===
+Route::resource('alumno', AlumnoController::class, [
+    // array de configuracion
+    'names' => 'alumnos',
+    // 'parameters =>' ['alumno' => 'alumnos']
+])->middleware('auth')->middleware('auth.admin');
+// ===Rutas Docentes===
+Route::resource('docente', DocenteController::class, [
+    // array de configuracion
+    'names' => 'docentes',
+    // 'parameters =>' ['docente' => 'docentes']
+])->middleware('auth')->middleware('auth.admin');
+
+Route::resource('calificaciones', CalificacioneController::class, [
+    'names' => 'calificaciones'
+])->middleware('auth');
+
+Route::resource('materias', MateriaController::class, [
+    'names' => 'materias'
+])->middleware('auth');
+
+Route::resource('carreras', CarreraController::class, [
+    'names' => 'carreras'
+])->middleware('auth');
+
+
 // index -> listado de recursos
 // show -> detalle de algo
 // create -> formulario
@@ -45,31 +73,6 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 
 // Protegiendo las rutas de usuarios no autenticados
 // gracias al middleware que viene en laravel
-// SIMPLIIFCANDO LAS RUTAS 
-// ===Rutas ALumno===
-Route::resource('alumno', AlumnoController::class, [
-    // array de configuracion
-    'names' => 'alumnos',
-    // 'parameters =>' ['alumno' => 'alumnos']
-])->middleware('auth')->middleware('auth.admin');
-// ===Rutas Docentes===
-Route::resource('docente', DocenteController::class, [
-    // array de configuracion
-    'names' => 'docentes',
-    // 'parameters =>' ['docente' => 'docentes']
-])->middleware('auth')->middleware('auth.admin');
-
-
-Route::resource('calificaciones', CalificacioneController::class, [
-    'names' => 'calificaciones'
-])->middleware('auth');
-
-Route::resource('materias', MateriaController::class, [
-    'names' => 'materias'
-])->middleware('auth');
-
-
-
 
 
 

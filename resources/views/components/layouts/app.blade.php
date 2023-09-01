@@ -38,7 +38,7 @@ style="background-image: url('/img/patron.png')"
       {{session('status')}}
     </div>
   @endif
-  <main class="w-10/12 m-auto">
+  <main class="max-w-7xl w-full m-auto px-2">
     {{ $slot }}
   </main>
   <!-- slot es una variable definida que indica

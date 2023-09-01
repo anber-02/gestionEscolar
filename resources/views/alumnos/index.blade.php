@@ -1,6 +1,6 @@
 <x-layouts.app title="Alumnos">
     <div class="w-full mt-4">
-        <div class="flex gap-2 items-center">
+        <div class="flex gap-2 items-center justify-between">
             <h1 class="text-lg font-bold text-left">Lista de alumnos</h1>
             <x-button text="Agregar alumno" route="alumnos.create" />
         </div>
@@ -11,45 +11,40 @@
             </div>
         </div>
 
-
-
-        {{-- Tabla alumnos --}}
-
-        <div class="pb-8 pt-2  w-full">
-            <div class="shadow-3xl overflow-auto rounded border border-gray-800">
-                <table class="max-w-full bg-white">
-                    <thead class=" text-black">
-                        <tr class="border-b border-black">
-                            <th class="border-r border-black text-center py-3 px-4  capitalize font-bold text-base">
+        <div class="pb-8 pt-2 w-full ">
+            <div class="shadow-lg rounded overflow-auto pb-4">
+                <table class="min-w-full bg-white">
+                    <thead class=" bg-gray-700 text-white">
+                        <tr class="border-b border-opacity-20">
+                            <th class="border-r text-center py-3 px-4  capitalize font-bold text-base">
                                 Matricula</th>
-                            <th class="border-r border-black text-center py-3 px-4  capitalize font-bold text-base">
+                            <th class="border-r text-center py-3 px-4  capitalize font-bold text-base">
                                 Alumnos</th>
-                            <th class="border-r border-black text-center py-3 px-4 capitalize font-bold text-base">
+                            <th class="border-r text-center py-3 px-4 capitalize font-bold text-base">
                                 Grupo</th>
-                            <th class="border-r border-black text-center py-3 px-4 capitalize font-bold text-base">
+                            <th class="border-r text-center py-3 px-4 capitalize font-bold text-base">
                                 Telefono</th>
-                            <th class="border-r border-black text-center py-3 px-4 capitalize font-bold text-base">
+                            <th class="border-r text-center py-3 px-4 capitalize font-bold text-base">
                                 Correo</td>
-                            <th class="border-black text-center py-3 px-4 capitalize font-bold text-base">Opciones</td>
+                            <th class="text-center py-3 px-4 capitalize font-bold text-base">Opciones</td>
                         </tr>
                     </thead>
                     <tbody class="text-gray-700">
-
                         @foreach ($alumnos as $alumno)
-                            <tr class="bg-white border-b border-black">
-                                <td class="border-r border-black text-left uppercase py-3 px-4" >{{ $alumno->matricula }}</td>
-                                <td class=" border-r border-black text-left capitalize py-3 px-4">
+                            <tr class="bg-white border-b ">
+                                <td class="border-r text-left uppercase py-3 px-4" >{{ $alumno->matricula }}</td>
+                                <td class=" border-r text-left capitalize py-3 px-4">
                                     {{ $alumno->a_paterno }}
                                     {{ $alumno->a_materno }}
                                     {{ $alumno->nombre }}
                                 </td>
-                                <td class=" border-r border-black text-left py-3 px-4">
+                                <td class=" border-r text-left py-3 px-4">
                                     {{ $alumno->grupo }}
                                 </td>
-                                <td class=" border-r border-black text-left py-3 px-4">
+                                <td class=" border-r text-left py-3 px-4">
                                     <a class="hover:text-blue-500" href="tel:622322662">{{ $alumno->telefono }}</a>
                                 </td>
-                                <td class=" border-r border-black text-left py-3 px-4">
+                                <td class=" border-r text-left py-3 px-4">
                                     <a class="hover:text-blue-500"
                                         href="mailto:jonsmith@mail.com">{{ $alumno->email }}</a>
                                 </td>

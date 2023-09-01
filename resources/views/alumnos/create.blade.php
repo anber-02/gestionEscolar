@@ -1,10 +1,8 @@
 <x-layouts.app title="Agregar nuevo alumno">
     <a href="{{ route('alumnos.index') }}">Regresar</a>
-    <!-- variable de errores $errors  -->
-
-        <div class="w-10/12 lg:w-1-43 m-auto bg-white rounded-lg shadow-md  py-8 ">
-            <h1 class="text-center font-bold text-2xl mb-8 text-gray-600">Agregar nuevo alumno</h1>
-            <form action="{{ route('alumnos.store') }}" method="POST" class="w-full m-auto bg-white rounded-md px-3">
+        <div class="max-w-7xl">
+            <h1 class="text-center font-bold text-2xl mb-2 text-gray-600">Agregar alumno</h1>
+            <form action="{{ route('alumnos.store') }}" method="POST" class="w-full m-auto rounded-md px-3  pb-3">
                 @csrf
                 @include('alumnos.form-fields')
             </form>

@@ -20,7 +20,7 @@ class Materia extends Model
     public function alumnos(){
         return $this->belongsToMany(Alumno::class);
     }
-    // Relacioines muchos a muchos polimorficas
+    // Relaciones muchos a muchos polimorficas
     public function docentes(){
         // return $this->morphedByMany(User::class, 'grupo_materia_docente', 'grupo_materia_docentes');
         return $this->belongsToMany(User::class, 'docentes_materias', 'docente_id', 'materia_id');
