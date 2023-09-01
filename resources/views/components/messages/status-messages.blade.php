@@ -1,7 +1,7 @@
 @if (session('success'))
     <!-- verifica si existe un mensaje de sesion con la clave status -->
     <div id="alert-2"
-        class="z-50 relative flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+        class="z-50 relative flex items-center p-4 mb-4 text-green-800  bg-green-50 dark:bg-gray-800 dark:text-green-400"
         role="alert">
         <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
             viewBox="0 0 20 20">
@@ -28,7 +28,7 @@
 @if (session('error'))
     <!-- verifica si existe un mensaje de sesion con la clave status -->
     <div id="alert-2"
-        class="z-50 relative flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+        class="z-50 relative flex items-center p-4 mb-4 text-red-800 bg-red-50 dark:bg-gray-800 dark:text-red-400"
         role="alert">
         <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
             viewBox="0 0 20 20">

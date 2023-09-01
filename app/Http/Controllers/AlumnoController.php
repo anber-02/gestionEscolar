@@ -43,7 +43,7 @@ class AlumnoController extends Controller
         Alumno::create($request->except("_token"));
 
         return redirect()->route('alumnos.index')
-            ->with('status', 'Alumno creado correctamente.');
+            ->with('success', 'Alumno creado correctamente.');
     }
 
     public function edit($alumno)
@@ -55,12 +55,18 @@ class AlumnoController extends Controller
 
     public function update(SaveAlumnoRequest $request, Alumno $alumno)
     {
+        $request->validate(
+            [
+                'matricula' => 'required|unique:alumnos,matricula,'.$alumno->id_alumno.',id_alumno',
+                'email' => 'required|unique:alumnos,email,'.$alumno->id_alumno.',id_alumno',
+                'telefono' => 'required|unique:alumnos,telefono,'.$alumno->id_alumno.',id_alumno'
+            ]
+        );
         $data = $request->except(['grupo_id', '_token', '_method']);
         $alumno->update($data);
         $alumno->grupos()->attach($request->grupo_id);
-        // to_route() -> es como redirect()->route()
         return to_route('alumnos.show', $alumno)
-            ->with('status', 'Alumno actualizado correctamente');
+            ->with('success', 'Alumno actualizado correctamente');
     }
 
     public function destroy(Alumno $alumno)
@@ -68,6 +74,6 @@ class AlumnoController extends Controller
         $alumno->update([
             "estado" => false
         ]);
-        return to_route('alumnos.index')->with('status', 'Alumno eliminado correctamente');
+        return to_route('alumnos.index')->with('success', 'Alumno eliminado correctamente');
     }
 }

@@ -1,7 +1,7 @@
 <x-layouts.app title="Alumnos">
     <div class="w-full mt-4">
         <div class="flex gap-2 items-center justify-between">
-            <h1 class="text-lg font-bold text-left">Lista de alumnos</h1>
+            <h1 class="text-lg font-bold text-left md:text-2xl">Lista de alumnos</h1>
             <x-button text="Agregar alumno" route="alumnos.create" />
         </div>
         <div class=" flex flex-col min-w-full items-start">

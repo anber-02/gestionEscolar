@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SaveAlumnoRequest extends FormRequest
@@ -23,9 +24,15 @@ class SaveAlumnoRequest extends FormRequest
      */
     public function rules(): array
     {
-
         if($this->isMethod('PATCH')){
             // retornamos diferentes validaciones
+            return [
+                //
+                    'nombre' => 'required',
+                    'a_paterno' => 'required',
+                    'a_materno' => 'required',
+                    'direccion' => 'required',
+            ];
         }
 
         return [
@@ -33,10 +40,10 @@ class SaveAlumnoRequest extends FormRequest
                 'nombre' => 'required',
                 'a_paterno' => 'required',
                 'a_materno' => 'required',
-                'matricula' => 'required',
+                'matricula' => 'required|unique:alumnos',
                 'direccion' => 'required',
-                'email' => 'required',
-                'telefono' => 'required',
+                'email' => 'required|unique:alumnos',
+                'telefono' => 'required|unique:alumnos',
         ];
     }
 }

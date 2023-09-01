@@ -1,5 +1,5 @@
 <nav class="bg-gray-600 px-2 sm:px-4 py-2.5 dark:bg-gray-900 relative ">
-    <div class="flex flex-wrap items-center justify-between mx-auto max-w-7xl ">
+    <div class="flex flex-wrap items-center justify-between mx-auto max-w-7xl px-2 ">
         <div class="flex gap-2 items-center">
             <button id="btn-menu" class="text-white cursor-pointer hover:bg-teal-700 rounded-md lg:hidden" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"><path fill="currentColor" d="M160 448a32 32 0 0 1-32-32V160.064a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V416a32 32 0 0 1-32 32H160zm448 0a32 32 0 0 1-32-32V160.064a32 32 0 0 1 32-32h255.936a32 32 0 0 1 32 32V416a32 32 0 0 1-32 32H608zM160 896a32 32 0 0 1-32-32V608a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32v256a32 32 0 0 1-32 32H160zm448 0a32 32 0 0 1-32-32V608a32 32 0 0 1 32-32h255.936a32 32 0 0 1 32 32v256a32 32 0 0 1-32 32H608z"/></svg>

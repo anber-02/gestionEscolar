@@ -19,10 +19,10 @@
     <div class="w-full grid  gap-4 mb-4">
         <x-input type="text" id="direccion" name="direccion" placeholder="calle, colonia, estado" text="Direccion"
             value="{{ old('direccion', $alumno->direccion) }}" />
-        <x-input type="text" id="matricula" name="matricula" placeholder="calle, colonia, estado" text="Matricula"
+        <x-input type="text" id="matricula" name="matricula" placeholder="generar matricula" text="Matricula"
             value="{{ old('matricula', $alumno->matricula) }}" />
     </div>
 
-    <input type="submit" value="Enviar"
+    <input type="submit" value="{{$alumno->nombre ? 'Actualizar' : 'Enviar'}}"
         class="inline-block bg-teal-700 hover:bg-teal-500 rounded-md py-1.5 px-5 text-white cursor-pointer " />
 </div>
